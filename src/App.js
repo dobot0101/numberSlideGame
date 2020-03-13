@@ -97,17 +97,21 @@ const App = () => {
       setArray(init());
       setIsStart(true);
 
+      const startTime = new Date().getTime();
       const getTime = () => {
-        const date = new Date();
-        const hour = date.getHours();
-        const minute = date.getMinutes();
-        const second = date.getSeconds();
+        const nowTime = new Date().getTime();
+        const newTime = new Date(nowTime - startTime);
+
+        // const hour = newTime.getHours();
+        const minute = newTime.getMinutes();
+        const second = newTime.getSeconds();
 
         const addZero = (num) => {
           return num < 10 ? "0" + num : num;
         }
 
-        timerRef.current.innerText = addZero(hour) + ":" + addZero(minute) + ":" + addZero(second);
+        // timerRef.current.innerText = addZero(hour) + ":" + addZero(minute) + ":" + addZero(second);
+        timerRef.current.innerText = addZero(minute) + ":" + addZero(second);
       }
 
       getTime();
@@ -119,17 +123,27 @@ const App = () => {
   const end = () => {
     clearInterval(timer);
     setIsStart(false);
-    timerRef.current.innerText = '00:00:00';
+    // timerRef.current.innerText = '00:00:00';
+    timerRef.current.innerText = '00:00';
     setArray([[0, 0, 0], [0, 0, 0], [0, 0, 0]]);
   }
 
   return <div>
+    {/* 게임 설명 추가 */}
+    <div>0 주변 숫자를 누르면 위치가 바뀝니다.<br />
+      1 2 3<br />
+      4 5 6<br />
+      7 8 0<br />
+      모양을 만들면 Game Clear
+    </div>
+    <br />
     <table className="slide_table">
       <tbody>
         {renderTr()}
       </tbody>
     </table>
-    <h2 ref={timerRef}>00:00:00</h2>
+    {/* <h2 ref={timerRef}>00:00:00</h2> */}
+    <h2 ref={timerRef}>00:00</h2>
     {!isStart ? <button onClick={start}>게임 시작</button> : <button onClick={end}>게임 종료</button>}
   </div>;
 }
