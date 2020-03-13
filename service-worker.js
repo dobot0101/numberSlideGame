@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/numberSlideGame/precache-manifest.10718a063d439ed50bcd6aa84c2e1b71.js"
+  "/numberSlideGame/precache-manifest.083a76260a3c8d3d0fee01794666de0f.js"
 );
 
 self.addEventListener('message', (event) => {
