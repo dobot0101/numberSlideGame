@@ -1,6 +1,150 @@
-import React, { useState, useRef } from 'react';
-import './App.css'
-import Tr from './Tr'
+import React, { useState, useRef } from "react";
+import "./App.css";
+import Tr from "./Tr";
+
+let timer;
+const App = () => {
+  const [array, setArray] = useState(
+    new Array(3).fill(null).map(() => [0, 0, 0])
+  );
+  const [isStart, setIsStart] = useState(false);
+  const timerRef = useRef();
+
+  //up, right, down, left 순으로 확인
+  const onClick = (num, row, col) => {
+    const maxRow = 2,
+      maxCol = 2,
+      newArr = array.slice();
+
+    if (num === 0) {
+      return;
+    }
+
+    //위
+    if (row - 1 >= 0 && newArr[row - 1][col] === 0) {
+      newArr[row][col] = 0;
+      newArr[row - 1][col] = num;
+      setArray(newArr);
+    }
+
+    //오른쪽
+    if (col + 1 <= maxCol && newArr[row][col + 1] === 0) {
+      newArr[row][col] = 0;
+      newArr[row][col + 1] = num;
+      setArray(newArr);
+    }
+
+    //아래
+    if (row + 1 <= maxRow && newArr[row + 1][col] === 0) {
+      newArr[row][col] = 0;
+      newArr[row + 1][col] = num;
+      setArray(newArr);
+    }
+
+    //왼쪽
+    if (col - 1 >= 0 && newArr[row][col - 1] === 0) {
+      newArr[row][col] = 0;
+      newArr[row][col - 1] = num;
+      setArray(newArr);
+    }
+
+    //정답 확인
+    isClear();
+  };
+
+  //정답 확인
+  const isClear = () => {
+    if (array.join() === "1,2,3,4,5,6,7,8,0") {
+      clearInterval(timer);
+      setIsStart(false);
+      alert("Game Clear!!!");
+    }
+  };
+
+  //<tr> 렌더링
+  const renderTr = () => {
+    return array.map((value, index) => (
+      <Tr key={index} rowNum={index} value={value} onClick={onClick}></Tr>
+    ));
+  };
+
+  //게임 시작
+  const start = () => {
+    if (end) {
+      setArray(init());
+      setIsStart(true);
+
+      //시작 시간
+      const startTime = new Date().getTime();
+
+      const getElapsedTime = () => {
+        //현재 시간
+        const nowTime = new Date().getTime();
+        const newTime = new Date(nowTime - startTime);
+
+        const minute = newTime.getMinutes();
+        const second = newTime.getSeconds();
+
+        //1자리면 앞에 0 추가
+        const addZero = num => {
+          return num < 10 ? "0" + num : num;
+        };
+
+        timerRef.current.innerText = addZero(minute) + ":" + addZero(second);
+      };
+
+      //setInterval만 쓰면 1초 후에 처음 시작되기 때문에, 함수 한번 실행하고 setInterval
+      getElapsedTime();
+      timer = setInterval(getElapsedTime, 1000);
+    }
+  };
+
+  //게임 종료
+  const end = () => {
+    clearInterval(timer);
+    setIsStart(false);
+    timerRef.current.innerText = "00:00";
+    setArray([
+      [0, 0, 0],
+      [0, 0, 0],
+      [0, 0, 0]
+    ]);
+  };
+
+  return (
+    <div>
+      {/* 게임 설명 추가 */}
+      <div>
+        0 주변 숫자를 누르면 위치가 바뀝니다.
+        <br />
+        1 2 3<br />
+        4 5 6<br />
+        7 8 0<br />
+        모양을 만들면 Game Clear
+      </div>
+      <br />
+      <table className="slide_table">
+        <tbody>{renderTr()}</tbody>
+      </table>
+      <h2 ref={timerRef}>00:00</h2>
+      {!isStart ? (
+        <button onClick={start}>게임 시작</button>
+      ) : (
+        <button onClick={end}>게임 종료</button>
+      )}
+    </div>
+  );
+};
+
+//랜덤 숫자 배열로 3*3 배열 생성
+const init = () => {
+  const randomNumArr = getRandomNumArr();
+  const newArr = new Array(3).fill(null).map(() => {
+    return randomNumArr.splice(0, 3);
+  });
+
+  return newArr;
+};
 
 //0~8 랜덤 숫자 배열 구하기
 const getRandomNumArr = () => {
@@ -14,138 +158,11 @@ const getRandomNumArr = () => {
     }
   }
   return randomNumArr;
-}
+};
 
 //배열의 숫자 중복 확인
 const isExist = (number, arr) => {
   return arr.filter(value => value === number).length > 0 ? true : false;
-}
-
-//랜덤 숫자 배열로 3*3 배열 생성
-const init = () => {
-  const randomNumArr = getRandomNumArr();
-  const newArr = new Array(3).fill(null).map(() => {
-    return [randomNumArr.pop(), randomNumArr.pop(), randomNumArr.pop()];
-  });
-
-  return newArr;
-}
-
-let timer;
-
-const App = () => {
-  const [array, setArray] = useState(new Array(3).fill(null).map(() => [0, 0, 0]));
-  const [isStart, setIsStart] = useState(false);
-  const timerRef = useRef();
-
-  //up, right, down, left 순으로 확인
-  const onClick = (e, row, col) => {
-    const currentNum = e.nativeEvent.target.innerText;
-    const maxRow = 2;
-    const maxCol = 2;
-    const newArr = array.slice();
-    let isChanged = false;
-
-    if (currentNum === 0) {
-      return;
-    }
-
-    //위
-    if (!isChanged && row - 1 >= 0 && newArr[row - 1][col] === 0) {
-      newArr[row][col] = 0;
-      newArr[row - 1][col] = currentNum;
-      setArray(newArr);
-    }
-
-    //오른쪽
-    if (!isChanged && col + 1 <= maxCol && newArr[row][col + 1] === 0) {
-      newArr[row][col] = 0;
-      newArr[row][col + 1] = currentNum;
-      setArray(newArr);
-    }
-
-    //아래
-    if (!isChanged && row + 1 <= maxRow && newArr[row + 1][col] === 0) {
-      newArr[row][col] = 0;
-      newArr[row + 1][col] = currentNum;
-      setArray(newArr);
-    }
-
-    //왼쪽
-    if (!isChanged && col - 1 >= 0 && newArr[row][col - 1] === 0) {
-      newArr[row][col] = 0;
-      newArr[row][col - 1] = currentNum;
-      setArray(newArr);
-    }
-
-    //정답 확인
-    if (array.join() === '1,2,3,4,5,6,7,8,0') {
-      clearInterval(timer);
-      setIsStart(false);
-      alert('Game Clear!!!');
-    }
-  }
-
-  //<tr> 렌더링
-  const renderTr = () => {
-    return array.map((value, index) => <Tr key={index} rowNum={index} value={value} onClick={onClick}></Tr >);
-  }
-
-  //게임 시작
-  const start = () => {
-    if (end) {
-      setArray(init());
-      setIsStart(true);
-
-      const startTime = new Date().getTime();
-      const getTime = () => {
-        const nowTime = new Date().getTime();
-        const newTime = new Date(nowTime - startTime);
-
-        // const hour = newTime.getHours();
-        const minute = newTime.getMinutes();
-        const second = newTime.getSeconds();
-
-        const addZero = (num) => {
-          return num < 10 ? "0" + num : num;
-        }
-
-        // timerRef.current.innerText = addZero(hour) + ":" + addZero(minute) + ":" + addZero(second);
-        timerRef.current.innerText = addZero(minute) + ":" + addZero(second);
-      }
-
-      getTime();
-      timer = setInterval(getTime, 1000);
-    }
-  }
-
-  //게임 종료
-  const end = () => {
-    clearInterval(timer);
-    setIsStart(false);
-    // timerRef.current.innerText = '00:00:00';
-    timerRef.current.innerText = '00:00';
-    setArray([[0, 0, 0], [0, 0, 0], [0, 0, 0]]);
-  }
-
-  return <div>
-    {/* 게임 설명 추가 */}
-    <div>0 주변 숫자를 누르면 위치가 바뀝니다.<br />
-      1 2 3<br />
-      4 5 6<br />
-      7 8 0<br />
-      모양을 만들면 Game Clear
-    </div>
-    <br />
-    <table className="slide_table">
-      <tbody>
-        {renderTr()}
-      </tbody>
-    </table>
-    {/* <h2 ref={timerRef}>00:00:00</h2> */}
-    <h2 ref={timerRef}>00:00</h2>
-    {!isStart ? <button onClick={start}>게임 시작</button> : <button onClick={end}>게임 종료</button>}
-  </div>;
-}
+};
 
 export default App;

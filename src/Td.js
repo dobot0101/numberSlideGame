@@ -1,23 +1,38 @@
-import React, { useRef } from 'react';
+import React, { useRef } from "react";
+import styled from "styled-components";
+
+const StyledTd = styled.td`
+  border: 1px solid;
+  padding: 20px;
+  cursor: pointer;
+`;
 
 const Td = ({ rowNum, cellNum, value, onClick }) => {
+  const tdRef = useRef();
 
-    const tdRef = useRef();
+  const onMouseEnter = () => {
+    tdRef.current.style.backgroundColor = "#e0e0e0";
+  };
 
-    const onMouseEnter = () => {
-        tdRef.current.style.backgroundColor = '#e0e0e0';
-    }
+  const onMouseLeave = () => {
+    tdRef.current.style.backgroundColor = "white";
+  };
 
-    const onMouseLeave = () => {
-        tdRef.current.style.backgroundColor = 'white';
-    }
+  const clickHandler = () => {
+    onClick(value, rowNum, cellNum);
+  };
 
-    return <td className="slide_td"
-        ref={tdRef}
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
-        onClick={(event) => { onClick(event, rowNum, cellNum) }}> {value}
-    </td >
-}
+  return (
+    <StyledTd
+      className="slide_td"
+      ref={tdRef}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      onClick={clickHandler}
+    >
+      {value}
+    </StyledTd>
+  );
+};
 
 export default Td;
