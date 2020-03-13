@@ -1,0 +1,13 @@
+.slide_table{
+  border: 1px solid;
+  border-collapse: collapse;
+}
+
+.slide_tr, .slide_td {
+  border:1px solid;
+  padding: 20px;
+}
+
+.slide_td {
+  cursor: pointer;
+}
