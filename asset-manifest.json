@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/numberSlideGame/static/css/main.912aa60f.chunk.css",
-    "main.js": "/numberSlideGame/static/js/main.98cf276b.chunk.js",
-    "main.js.map": "/numberSlideGame/static/js/main.98cf276b.chunk.js.map",
+    "main.css": "/numberSlideGame/static/css/main.54a54eb5.chunk.css",
+    "main.js": "/numberSlideGame/static/js/main.71c0e255.chunk.js",
+    "main.js.map": "/numberSlideGame/static/js/main.71c0e255.chunk.js.map",
     "runtime-main.js": "/numberSlideGame/static/js/runtime-main.cf5111ff.js",
     "runtime-main.js.map": "/numberSlideGame/static/js/runtime-main.cf5111ff.js.map",
-    "static/js/2.b570898d.chunk.js": "/numberSlideGame/static/js/2.b570898d.chunk.js",
-    "static/js/2.b570898d.chunk.js.map": "/numberSlideGame/static/js/2.b570898d.chunk.js.map",
+    "static/js/2.402941c3.chunk.js": "/numberSlideGame/static/js/2.402941c3.chunk.js",
+    "static/js/2.402941c3.chunk.js.map": "/numberSlideGame/static/js/2.402941c3.chunk.js.map",
     "index.html": "/numberSlideGame/index.html",
-    "precache-manifest.0c008b44da18116435cfd50e45e5bdeb.js": "/numberSlideGame/precache-manifest.0c008b44da18116435cfd50e45e5bdeb.js",
+    "precache-manifest.fad8c57feba1973ea9ab67f893993848.js": "/numberSlideGame/precache-manifest.fad8c57feba1973ea9ab67f893993848.js",
     "service-worker.js": "/numberSlideGame/service-worker.js",
-    "static/css/main.912aa60f.chunk.css.map": "/numberSlideGame/static/css/main.912aa60f.chunk.css.map",
-    "static/js/2.b570898d.chunk.js.LICENSE.txt": "/numberSlideGame/static/js/2.b570898d.chunk.js.LICENSE.txt"
+    "static/css/main.54a54eb5.chunk.css.map": "/numberSlideGame/static/css/main.54a54eb5.chunk.css.map",
+    "static/js/2.402941c3.chunk.js.LICENSE.txt": "/numberSlideGame/static/js/2.402941c3.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.cf5111ff.js",
-    "static/js/2.b570898d.chunk.js",
-    "static/css/main.912aa60f.chunk.css",
-    "static/js/main.98cf276b.chunk.js"
+    "static/js/2.402941c3.chunk.js",
+    "static/css/main.54a54eb5.chunk.css",
+    "static/js/main.71c0e255.chunk.js"
   ]
 }
