@@ -3,7 +3,8 @@ import styled from "styled-components";
 
 const StyledTd = styled.td`
   border: 1px solid;
-  padding: 20px;
+  padding: 40px;
+  font-size: 30px;
   cursor: pointer;
 `;
 
