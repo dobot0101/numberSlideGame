@@ -1,10 +1,11 @@
-ReactJS를 사용하여 Number Slide Game을 개발했습니다.
+# 게임 설명
+0 상하좌우 숫자를 누르면 위치가 변경되고
+1 2 3
+4 5 6
+7 8 0
+모양을 만들면 Game Clear
 
-0 근처의 숫자를 누르면 위치가 변경되고,
-
-1 2 3<br>
-4 5 6<br>
-7 8 0<br>
-
-모양을 만들면 Game Clear입니다.
-
+# 사용 기술
+- reactJS
+- ES5+
+- styled-components
