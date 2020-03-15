@@ -11,3 +11,9 @@ td {
   border: 1px solid;
   padding: 10px;
 }
+
+html,
+body,
+#root {
+  height: 100%;
+}

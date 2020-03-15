@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import "./App.css";
-import Tr from "./Tr";
+import Tr from "./components/Tr";
+import Modal from "./components/Modal";
 import styled from "styled-components";
 
 //20200315, ldh, styled-components 사용 css 변경
@@ -9,15 +10,34 @@ const StyledTable = styled.table`
   border-collapse: collapse;
 `;
 
+const StyledDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+`;
+
 let timer;
 const App = () => {
   const [array, setArray] = useState(
     new Array(3).fill(null).map(() => [0, 0, 0])
   );
   const [isStart, setIsStart] = useState(false);
+  const [show, setShow] = useState(true);
   const timerRef = useRef();
 
-  //up, right, down, left 순으로 확인
+  //모달 열기
+  const openModal = () => {
+    setShow(true);
+  };
+
+  //모달 닫기
+  const closeModal = () => {
+    setShow(false);
+  };
+
+  //상하좌우에 0 있는지 확인하고 위치 변경
   const onClick = (num, row, col) => {
     const maxRow = 2,
       maxCol = 2,
@@ -55,7 +75,6 @@ const App = () => {
       setArray(newArr);
     }
 
-    //정답 확인
     isClear();
   };
 
@@ -119,26 +138,23 @@ const App = () => {
   };
 
   return (
-    <div>
-      <div>
-        0 상하좌우 숫자를 누르면 위치가 바뀝니다.
-        <br />
-        1 2 3<br />
-        4 5 6<br />
-        7 8 0<br />
-        모양을 만들면 Game Clear
-      </div>
-      <br />
-      <StyledTable>
-        <tbody>{renderTr()}</tbody>
-      </StyledTable>
-      <h2 ref={timerRef}>00:00</h2>
-      {!isStart ? (
-        <button onClick={start}>게임 시작</button>
-      ) : (
-        <button onClick={end}>게임 종료</button>
-      )}
-    </div>
+    <>
+      <Modal show={show} closeModal={closeModal} />
+      <StyledDiv>
+        <StyledTable>
+          <tbody>{renderTr()}</tbody>
+        </StyledTable>
+        <h2 ref={timerRef}>00:00</h2>
+        <div>
+          <button onClick={openModal}>게임방법</button>
+          {!isStart ? (
+            <button onClick={start}>게임시작</button>
+          ) : (
+            <button onClick={end}>게임종료</button>
+          )}
+        </div>
+      </StyledDiv>
+    </>
   );
 };
 
