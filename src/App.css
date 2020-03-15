@@ -1,4 +1,13 @@
-.slide_table {
+button {
+  cursor: pointer;
+}
+
+table {
   border: 1px solid;
   border-collapse: collapse;
+}
+tr,
+td {
+  border: 1px solid;
+  padding: 10px;
 }

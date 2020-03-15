@@ -1,6 +1,13 @@
 import React, { useState, useRef } from "react";
 import "./App.css";
 import Tr from "./Tr";
+import styled from "styled-components";
+
+//20200315, ldh, styled-components 사용 css 변경
+const StyledTable = styled.table`
+  border: 1px solid;
+  border-collapse: collapse;
+`;
 
 let timer;
 const App = () => {
@@ -115,17 +122,35 @@ const App = () => {
     <div>
       {/* 게임 설명 추가 */}
       <div>
+        <h3 style={{ margin: 0 }}>{"<게임 설명>"}</h3>
         0 주변 숫자를 누르면 위치가 바뀝니다.
         <br />
-        1 2 3<br />
+        <table>
+          <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>8</td>
+            <td>0</td>
+          </tr>
+        </table>
+        {/* 1 2 3<br />
         4 5 6<br />
-        7 8 0<br />
+        7 8 0<br /> */}
         모양을 만들면 Game Clear
       </div>
       <br />
-      <table className="slide_table">
+      <StyledTable>
         <tbody>{renderTr()}</tbody>
-      </table>
+      </StyledTable>
       <h2 ref={timerRef}>00:00</h2>
       {!isStart ? (
         <button onClick={start}>게임 시작</button>
