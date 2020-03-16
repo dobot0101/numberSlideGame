@@ -1,8 +1,9 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./App.css";
 import Tr from "./components/Tr";
 import Modal from "./components/Modal";
 import styled from "styled-components";
+import Button from "./components/Button";
 
 //20200315, ldh, styled-components 사용 css 변경
 const StyledTable = styled.table`
@@ -24,17 +25,16 @@ const App = () => {
     new Array(3).fill(null).map(() => [0, 0, 0])
   );
   const [isStart, setIsStart] = useState(false);
-  const [show, setShow] = useState(true);
+  const [open, setOpen] = useState(true);
   const timerRef = useRef();
 
   //모달 열기
   const openModal = () => {
-    setShow(true);
+    setOpen(true);
   };
 
-  //모달 닫기
   const closeModal = () => {
-    setShow(false);
+    setOpen(false);
   };
 
   //상하좌우에 0 있는지 확인하고 위치 변경
@@ -139,18 +139,18 @@ const App = () => {
 
   return (
     <>
-      <Modal show={show} closeModal={closeModal} />
+      <Modal open={open} closeModal={closeModal} />
       <StyledDiv>
         <StyledTable>
           <tbody>{renderTr()}</tbody>
         </StyledTable>
         <h2 ref={timerRef}>00:00</h2>
         <div>
-          <button onClick={openModal}>게임방법</button>
+          <Button onClick={openModal}>게임방법</Button>
           {!isStart ? (
-            <button onClick={start}>게임시작</button>
+            <Button onClick={start}>게임시작</Button>
           ) : (
-            <button onClick={end}>게임종료</button>
+            <Button onClick={end}>게임종료</Button>
           )}
         </div>
       </StyledDiv>

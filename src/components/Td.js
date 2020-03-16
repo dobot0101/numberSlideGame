@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 
 const StyledTd = styled.td`
@@ -6,17 +6,22 @@ const StyledTd = styled.td`
   padding: 40px;
   font-size: 30px;
   cursor: pointer;
+  background-color: ${props => (props.mouseEnter ? "#e0e0e0" : "white")};
 `;
 
 const Td = ({ rowNum, cellNum, value, onClick }) => {
-  const tdRef = useRef();
+  const [mouseEnter, setMouseEnter] = useState(false);
 
+  //20200316, LDH, useRef -> styled-components 방식으로 변경
+  // const tdRef = useRef();
   const onMouseEnter = () => {
-    tdRef.current.style.backgroundColor = "#e0e0e0";
+    // tdRef.current.style.backgroundColor = "#e0e0e0";
+    setMouseEnter(true);
   };
 
   const onMouseLeave = () => {
-    tdRef.current.style.backgroundColor = "white";
+    // tdRef.current.style.backgroundColor = "white";
+    setMouseEnter(false);
   };
 
   const clickHandler = () => {
@@ -24,15 +29,17 @@ const Td = ({ rowNum, cellNum, value, onClick }) => {
   };
 
   return (
-    <StyledTd
-      className="slide_td"
-      ref={tdRef}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      onClick={clickHandler}
-    >
-      {value}
-    </StyledTd>
+    <>
+      <StyledTd
+        // ref={tdRef}
+        mouseEnter={mouseEnter}
+        onMouseOver={onMouseEnter}
+        onMouseOut={onMouseLeave}
+        onClick={clickHandler}
+      >
+        {value}
+      </StyledTd>
+    </>
   );
 };
 

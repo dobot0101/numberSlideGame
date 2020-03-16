@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import Button from "./Button";
 
 const ModalBackground = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  display: ${props => (!props.show ? `none` : "flex")};
+  display: ${props => (!props.open ? `none` : "flex")};
   justify-content: center;
   align-items: center;
   background: rgba(0, 0, 0, 0.5);
@@ -20,14 +21,10 @@ const ModalContents = styled.div`
   padding: 20px;
 `;
 
-const Modal = ({ show, closeModal }) => {
-  const clickHandler = () => {
-    closeModal();
-  };
-
+const Modal = ({ open, closeModal }) => {
   return (
     <>
-      <ModalBackground show={show}>
+      <ModalBackground open={open}>
         <ModalContents>
           <h4>0 상하좌우 숫자를 누르면 위치가 바뀝니다.</h4>
           <table>
@@ -51,7 +48,7 @@ const Modal = ({ show, closeModal }) => {
           </table>
           <h4>모양을 만들면 Game Clear!</h4>
           <div style={{ textAlign: "right" }}>
-            <button onClick={clickHandler}>닫기</button>
+            <Button onClick={closeModal}>닫기</Button>
           </div>
         </ModalContents>
       </ModalBackground>
