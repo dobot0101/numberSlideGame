@@ -7,7 +7,7 @@ const StyledTr = styled.tr`
   padding: 20px;
 `;
 
-const Tr = ({ rowNum, value, onClick }) => {
+const Tr = ({ rowNum, value, isStart, onClick }) => {
   const renderTd = arr => {
     return arr.map((value, index) => (
       <Td
@@ -16,11 +16,12 @@ const Tr = ({ rowNum, value, onClick }) => {
         rowNum={rowNum}
         cellNum={index}
         value={value}
+        isStart={isStart}
       ></Td>
     ));
   };
 
-  return <StyledTr className="slide_tr">{renderTd(value)}</StyledTr>;
+  return <StyledTr>{renderTd(value)}</StyledTr>;
 };
 
 export default Tr;

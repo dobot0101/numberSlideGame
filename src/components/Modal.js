@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import Button from "./Button";
 
 const ModalBackground = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: ${props => (!props.open ? `none` : "flex")};
-  justify-content: center;
   align-items: center;
   background: rgba(0, 0, 0, 0.5);
-  width: 100%;
+  display: ${props => (!props.open ? `none` : "flex")};
   height: 100%;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
 `;
 
 const ModalContents = styled.div`
-  position: absolute;
   background-color: white;
   border-radius: 10px;
   padding: 20px;
+  position: absolute;
 `;
 
 const Modal = ({ open, closeModal }) => {
