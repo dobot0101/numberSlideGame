@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/numberSlideGame/static/css/main.54a54eb5.chunk.css",
-    "main.js": "/numberSlideGame/static/js/main.5a0eec2e.chunk.js",
-    "main.js.map": "/numberSlideGame/static/js/main.5a0eec2e.chunk.js.map",
+    "main.css": "/numberSlideGame/static/css/main.2357354d.chunk.css",
+    "main.js": "/numberSlideGame/static/js/main.4d1db905.chunk.js",
+    "main.js.map": "/numberSlideGame/static/js/main.4d1db905.chunk.js.map",
     "runtime-main.js": "/numberSlideGame/static/js/runtime-main.cf5111ff.js",
     "runtime-main.js.map": "/numberSlideGame/static/js/runtime-main.cf5111ff.js.map",
     "static/js/2.402941c3.chunk.js": "/numberSlideGame/static/js/2.402941c3.chunk.js",
     "static/js/2.402941c3.chunk.js.map": "/numberSlideGame/static/js/2.402941c3.chunk.js.map",
     "index.html": "/numberSlideGame/index.html",
-    "precache-manifest.6e8f66f310eb616aea171e88e32d80d2.js": "/numberSlideGame/precache-manifest.6e8f66f310eb616aea171e88e32d80d2.js",
+    "precache-manifest.a1aa6da6d8d2881733f440b82ed2a0f1.js": "/numberSlideGame/precache-manifest.a1aa6da6d8d2881733f440b82ed2a0f1.js",
     "service-worker.js": "/numberSlideGame/service-worker.js",
-    "static/css/main.54a54eb5.chunk.css.map": "/numberSlideGame/static/css/main.54a54eb5.chunk.css.map",
+    "static/css/main.2357354d.chunk.css.map": "/numberSlideGame/static/css/main.2357354d.chunk.css.map",
     "static/js/2.402941c3.chunk.js.LICENSE.txt": "/numberSlideGame/static/js/2.402941c3.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.cf5111ff.js",
     "static/js/2.402941c3.chunk.js",
-    "static/css/main.54a54eb5.chunk.css",
-    "static/js/main.5a0eec2e.chunk.js"
+    "static/css/main.2357354d.chunk.css",
+    "static/js/main.4d1db905.chunk.js"
   ]
 }
